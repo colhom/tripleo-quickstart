@@ -2,7 +2,7 @@
 # Working directory on the slave running the playbook,
 local_working_dir: "{{ lookup('env', 'HOME') }}/.quickstart"
 # Working directory on the virthost.
-working_dir: /home/stack
+working_dir: /opt/home/stack
 # Ansible user name.
 ansible_user: stack
 # SSH key used to access the undercloud machine.

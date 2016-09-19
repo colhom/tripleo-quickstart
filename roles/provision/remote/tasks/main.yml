@@ -11,6 +11,10 @@
   args:
     creates: "{{ virt_host_key }}"
 
+# Creates /opt/home directory for non-root user home directories
+- name: Create /opt/home directory
+  file: path=/opt/home state=directory
+
 # Create a non-root user on the target host.  This is the user that
 # will own the virtual infrastructure on which we deploy openstack.
 - name: Create non-root user
@@ -18,6 +22,7 @@
     name: "{{ non_root_user }}"
     state: present
     shell: /bin/bash
+    home: /opt/home/stack
   become: true
 
 # Install the public component of `virt_host_key` in the
