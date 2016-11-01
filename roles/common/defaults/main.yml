@@ -86,18 +86,17 @@ external_network_cidr: 10.7.12.0/27
 networks:
   - name: external
     bridge: brext
-    forward_mode: nat
+    forward_mode: route
+    interfaces:
+      - ens3f0
     address: "{{ external_network_cidr|nthhost(1) }}"
     netmask: "{{ external_network_cidr|ipaddr('netmask') }}"
     dhcp_range:
       - "{{ external_network_cidr|nthhost(5) }}"
       - "{{ external_network_cidr|nthhost(25) }}"
-    nat_port_range:
-      - 1024
-      - 65535
 
   - name: overcloud
-    bridge:  brovc
+    bridge: brovc
 
 #Enable network isolation with single-nic-vlans for virtualized deployments
 #This is the "overcloud" vlan

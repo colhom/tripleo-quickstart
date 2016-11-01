@@ -4,13 +4,19 @@
 {% set netmask = item.netmask|default('255.255.255.0') %}
 <network>
   <name>{{ item.name }}</name>
+{% if item.bridge is defined %}
   <bridge name='{{ item.bridge }}' stp='{{ stp }}' delay='{{ delay }}' />
+{% endif %}
 {% if item.forward_mode is defined %}
   <forward mode='{{ item.forward_mode }}'>
 {% if item.forward_mode == 'nat' %}
     <nat>
       <port start='{{ nat_port_range[0] }}' end='{{ nat_port_range[1] }}' />
     </nat>
+{% elif item.interfaces is defined %}
+  {% for interface in item.interfaces %}
+  <interface dev='{{ interface }}' />
+  {% endfor %}
 {% endif %}
   </forward>
 {% endif %}
