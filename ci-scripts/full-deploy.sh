@@ -71,7 +71,7 @@ if [ "$JOB_TYPE" = "dlrn-gate" ]; then
         --working-dir $WORKSPACE/ \
         --no-clone \
         --bootstrap \
-        --extra-vars artg_compressed_gating_repo="/home/stack/gating_repo.tar.gz" \
+        --extra-vars artg_compressed_gating_repo="/opt/home/stack/gating_repo.tar.gz" \
         --requirements quickstart-extras-requirements.txt \
         --playbook dlrn-gate.yml \
         --tags all \
@@ -84,7 +84,7 @@ if [ "$JOB_TYPE" = "dlrn-gate" ]; then
         --working-dir $WORKSPACE/ \
         --no-clone \
         --retain-inventory \
-        --extra-vars compressed_gating_repo="/home/stack/gating_repo.tar.gz" \
+        --extra-vars compressed_gating_repo="/opt/home/stack/gating_repo.tar.gz" \
         --config $WORKSPACE/config/general_config/$CONFIG.yml \
         --playbook quickstart-extras.yml \
         --skip-tags provision \

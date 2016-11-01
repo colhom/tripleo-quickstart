@@ -22,13 +22,13 @@ useradd stack
 echo "stack ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/stack
 chmod 0440 /etc/sudoers.d/stack
 
-mkdir /home/stack/.ssh
+mkdir /opt/home/stack/.ssh
 
 echo "127.0.0.1  localhost undercloud" > /etc/hosts
 echo "HOSTNAME=undercloud" >> /etc/sysconfig/network
 echo "undercloud" > /etc/hostname
 
-chown -R stack:stack /home/stack/
+chown -R stack:stack /opt/home/stack/
 
 # Add a 4GB swap file to the Undercloud
 dd if=/dev/zero of=/swapfile bs=1024 count=4194304

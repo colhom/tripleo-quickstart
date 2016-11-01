@@ -53,7 +53,7 @@ hostname:
   prefix:
   - nh1nv
   - rmgr
-instack_user_home: /home/stack
+instack_user_home: /opt/home/stack
 job:
   archive:
   - /var/log/
@@ -75,16 +75,16 @@ job:
   - /etc/puppet
   - /etc/qpid
   - /etc/qpidd.conf
-  - /home/stack/.instack/install-undercloud.log
-  - /home/stack/stackrc
-  - /home/stack/*.log
-  - /home/stack/*.json
-  - /home/stack/*.conf
-  - /home/stack/deploy-overcloudrc
-  - /home/stack/network-environment.yaml
-  - /home/stack/tempest/*.xml
-  - /home/stack/tempest/*.log
-  - /home/stack/tempest/etc/*.conf
+  - /opt/home/stack/.instack/install-undercloud.log
+  - /opt/home/stack/stackrc
+  - /opt/home/stack/*.log
+  - /opt/home/stack/*.json
+  - /opt/home/stack/*.conf
+  - /opt/home/stack/deploy-overcloudrc
+  - /opt/home/stack/network-environment.yaml
+  - /opt/home/stack/tempest/*.xml
+  - /opt/home/stack/tempest/*.log
+  - /opt/home/stack/tempest/etc/*.conf
   - /usr/share/openstack-tripleo-heat-templates
   gzip_logs: true
   artifact_url: https://ci.centos.org/artifacts/rdo
@@ -179,7 +179,7 @@ installer:
     liberty:
       files:
       - no_op
-  dib_dir: /home/stack/DIB
+  dib_dir: /opt/home/stack/DIB
   updates:
     enabled: false
   env:

@@ -19,9 +19,9 @@ scpcmd='scp -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
 # This is a requirement of the usbkey script, but the CI nodes do not have it
 $sshcmd root@$VIRTHOST <<-EOF
   useradd stack
-  mkdir /home/stack/.ssh
-  cp /root/.ssh/authorized_keys /home/stack/.ssh/
-  chown -R stack:stack /home/stack
+  mkdir /opt/home/stack/.ssh
+  cp /root/.ssh/authorized_keys /opt/home/stack/.ssh/
+  chown -R stack:stack /opt/home/stack
   echo "Defaults:stack !requiretty" > /etc/sudoers.d/stack
   echo "stack ALL=(root) NOPASSWD:ALL" >> /etc/sudoers.d/stack
   chmod 0440 /etc/sudoers.d/stack
