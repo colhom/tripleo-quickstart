@@ -18,7 +18,7 @@
   - name: Extract overcloud-full image
     command: >
       virt-copy-out -a {{ working_dir }}/undercloud.qcow2
-      /home/stack/overcloud-full.qcow2 {{ working_dir }}
+      /opt/home/stack/overcloud-full.qcow2 {{ working_dir }}
     register: overcloud_image_extracted_for_customize
     when: not overcloud_image_stat_for_customize.stat.exists
 

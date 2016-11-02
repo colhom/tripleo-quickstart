@@ -55,7 +55,7 @@
     command: >
       virt-customize -a {{ working_dir }}/undercloud.qcow2
       --upload {{ working_dir }}/instackenv.json:/home/stack/instackenv.json
-      --run-command 'chown stack:stack /opt/home/stack/instackenv.json'
+      --run-command 'chown stack:stack /home/stack/instackenv.json'
     environment:
       LIBGUESTFS_BACKEND: direct
       LIBVIRT_DEFAULT_URI: "{{ libvirt_uri }}"
@@ -83,7 +83,7 @@
       - homedir: /root
         owner: root
         group: root
-      - homedir: /opt/home/stack
+      - homedir: /home/stack
         owner: stack
         group: stack
 

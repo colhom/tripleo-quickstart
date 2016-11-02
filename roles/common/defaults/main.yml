@@ -92,7 +92,7 @@ networks:
     address: "{{ external_network_cidr|nthhost(1) }}"
     netmask: "{{ external_network_cidr|ipaddr('netmask') }}"
     dhcp_range:
-      - "{{ external_network_cidr|nthhost(5) }}"
+      - "{{ external_network_cidr|nthhost(9) }}"
       - "{{ external_network_cidr|nthhost(25) }}"
 
   - name: overcloud
