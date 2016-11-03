@@ -81,7 +81,6 @@ overcloud_nodes:
 # "external" network) in the order in which they are defined.  The
 # playbooks expect to find both an "external" network and a
 # "overcloud" network.
-# this is the "undercloud" vlan
 external_network_cidr: 10.7.12.0/27
 networks:
   - name: external
@@ -89,17 +88,21 @@ networks:
     forward_mode: route
     interfaces:
       - ens3f0
-    address: "{{ external_network_cidr|nthhost(1) }}"
+    address: "{{ external_network_cidr|nthhost(7) }}"
     netmask: "{{ external_network_cidr|ipaddr('netmask') }}"
+    gateway: 10.7.12.1
     dhcp_range:
       - "{{ external_network_cidr|nthhost(9) }}"
-      - "{{ external_network_cidr|nthhost(25) }}"
+      - "{{ external_network_cidr|nthhost(29) }}"
+    nat_port_range:
+      - 1024
+      - 65535
 
   - name: overcloud
-    bridge: brovc
-
+    bridge:  brovc
+    interfaces:
+      - ens3f1
 #Enable network isolation with single-nic-vlans for virtualized deployments
-#This is the "overcloud" vlan
 undercloud_external_network_cidr: 10.7.12.128/25
 undercloud_networks:
   external:
@@ -117,7 +120,7 @@ ipv6: false
 
 # Set this to `true` if you want your undercloud and overcloud vms to
 # have a VNC console available.
-enable_vnc_console: true
+enable_vnc_console: false
 
 # We have some version specific behaviors, so we need a release variable
 #

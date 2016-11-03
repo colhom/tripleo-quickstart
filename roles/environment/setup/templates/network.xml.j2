@@ -5,7 +5,7 @@
 <network>
   <name>{{ item.name }}</name>
 {% if item.bridge is defined %}
-  <bridge name='{{ item.bridge }}' stp='{{ stp }}' delay='{{ delay }}' />
+    <bridge name='{{ item.bridge }}' stp='{{ stp }}' delay='{{ delay }}' />
 {% endif %}
 {% if item.forward_mode is defined %}
   <forward mode='{{ item.forward_mode }}'>
@@ -13,7 +13,8 @@
     <nat>
       <port start='{{ nat_port_range[0] }}' end='{{ nat_port_range[1] }}' />
     </nat>
-{% elif item.interfaces is defined %}
+{% endif %}
+{% if item.interfaces is defined %}
   {% for interface in item.interfaces %}
   <interface dev='{{ interface }}' />
   {% endfor %}
@@ -26,7 +27,10 @@
     <dhcp>
       <range start='{{ item.dhcp_range[0] }}' end='{{ item.dhcp_range[1] }}'/>
     </dhcp>
-{% endif %}
+  {% endif %}
+  {% if item.gateway is defined %}
+    <route family='ipv4' address='0.0.0.0' prefix='0' gateway='{{ item.gateway }}' />
+  {% endif %}
   </ip>
 {% endif %}
 </network>

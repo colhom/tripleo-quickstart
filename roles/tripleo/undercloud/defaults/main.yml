@@ -7,7 +7,7 @@ network_environment_file: network-environment.yaml.j2
 undercloud_hieradata_override_file: quickstart-hieradata-overrides.yaml.j2
 
 undercloud_network_cidr: 10.7.12.0/27
-undercloud_local_ip: 10.7.12.18
+#undercloud_local_ip: 10.7.12.18
 
 step_introspect: false
 bash_deploy_ramdisk: false
